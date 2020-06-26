@@ -8,7 +8,6 @@ const StyledHeader = styled.div`
     height:50px;
     width:100%;
     background-color: #181818;
-
     color: white;
     display:flex;
 `
