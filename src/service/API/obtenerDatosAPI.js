@@ -7,3 +7,8 @@ export async function obtenerEstrenos() {
     const respuesta = await axios(`${URLBase}3/movie/upcoming?${keyAutorizacion}`)
     return respuesta.data.results
 }
+
+export async function obtenerPeliculasTrending() {
+    const respuesta = await axios(`${URLBase}3/trending/movie/week?${keyAutorizacion}`)
+    return respuesta.data.results
+}

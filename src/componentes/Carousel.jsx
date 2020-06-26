@@ -11,7 +11,7 @@ const CuadroCarousel = ({ data }) => {
 
 
     return (
-        <Carousel className="letra-borde" activeIndex={index} onSelect={handleSelect} style={{ width: "60%", height: "auto", marginLeft: "auto", marginRight: "auto", marginTop: "20px", marginBottom: "20px" }}>
+        <Carousel className="letra-borde" activeIndex={index} onSelect={handleSelect} style={{ width: "100%", height: "auto",  marginTop: "20px", marginBottom: "20px" }}>
             {data && data.map((x, i) =>
                 <Carousel.Item key={i}>
                     <img
@@ -33,7 +33,6 @@ const CuadroCarousel = ({ data }) => {
 
 
 const CarouselComponente = () => {
-    debugger
     const [imagenesCarousel, setImagenesCarousel] = useState("")
 
     useEffect(() => {
