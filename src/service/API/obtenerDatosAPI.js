@@ -12,3 +12,13 @@ export async function obtenerPeliculasTrending() {
     const respuesta = await axios(`${URLBase}3/trending/movie/week?${keyAutorizacion}`)
     return respuesta.data.results
 }
+
+export async function obtenerPeliculasPopulares() {
+    const respuesta = await axios(`${URLBase}3/movie/popular?${keyAutorizacion}`)
+    return respuesta.data.results
+}
+
+export async function obtenerActoresPopulares() {
+    const respuesta = await axios(`${URLBase}3/person/popular?${keyAutorizacion}`)
+    return respuesta.data.results
+}
