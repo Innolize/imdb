@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Badge } from 'react-bootstrap';
 import { faBars, faSearch, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const StyledHeader = styled.div`
     height:50px;
@@ -23,7 +24,9 @@ const Header = () => {
         <StyledHeader>
             <Contenedor>
                 <h4>
-                    <Badge variant="warning">innoMDB</Badge>
+                    <Link to="/">
+                        <Badge variant="warning">innoMDB</Badge>
+                    </Link>
                 </h4>
                 <Badge variant="outline-light" style={{ display: "flex", cursor: "pointer" }}>
                     <FontAwesomeIcon icon={faBars} style={{ fontSize: "30px" }} /><p style={{ fontSize: "20px", paddingLeft: "5px", margin: "auto" }}>Menu</p>
