@@ -7,19 +7,32 @@ import ListaDePeliculas from './componentes/peliculasListaMain/ListaDePeliculas'
 import ListaTrending from './componentes/peliculasListaMain/ListaTrending';
 import ListaPopular from './componentes/peliculasListaMain/ListaPopular';
 import ListaActoresMain from './componentes/ListaActoresMain';
+import styled from '@emotion/styled';
+
+const Main = styled.div`
+  width:90%;
+  margin-left: auto;
+  margin-right: auto;
+  @media (min-width: 1600px) {
+    width: 60%;
+  }
+
+`
+
+
 
 function App() {
   return (
     <div className="App">
       <Header></Header>
-      <div id="main" style={{ width: "60%", marginLeft: "auto", marginRight: "auto" }}>
+      <Main>
 
         <Carrousel />
         <ListaTrending></ListaTrending>
         <ListaPopular />
         <ListaActoresMain></ListaActoresMain>
 
-      </div>
+      </Main>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel, Spinner } from 'react-bootstrap';
 import { obtenerEstrenos } from '../service/API/obtenerDatosAPI';
-import { useFetchReducer } from '../customHooks/useFetch';
 
 const CuadroCarousel = ({ data }) => {
     const [index, setIndex] = useState(0);

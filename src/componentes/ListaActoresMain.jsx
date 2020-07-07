@@ -35,7 +35,9 @@ const ListaActoresMain = () => {
 
         return (
             <>
+                <h3 style={{ color: "#FFC107", paddingTop:"10px" }}><strong>Popular actors</strong></h3>
                 <div className="d-flex pt-3">
+
                     {data.slice(0, 5).map(x => <ActorCard data={x} key={x.id} />)}
                 </div>
             </>
