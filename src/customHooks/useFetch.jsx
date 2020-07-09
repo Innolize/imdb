@@ -17,14 +17,15 @@ const fetchReducer = (state, action) => {
     }
 }
 
-export const useFetchReducer = (fetchCallback) => {
+export const useFetchReducer = (fetchCallback, opcional) => {
     const [state, dispatch] = useReducer(fetchReducer, initialState);
 
     useEffect(() => {
         const test = async () => {
             dispatch({ type: "LOAD" })
             try {
-                const data = await fetchCallback()
+                debugger
+                const data = await fetchCallback(opcional)
                 dispatch({ type: "SUCCESS", payload: data })
             } catch (error) {
                 dispatch({ type: "ERROR" })

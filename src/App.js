@@ -25,7 +25,7 @@ const LayoutMain = styled.div`
 `
 const LayoutPelicula = styled.div`
   background-color: #333333;
-  width:60%;
+  width:55%;
   margin-left: auto;
   margin-right: auto;
 `

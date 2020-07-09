@@ -5,6 +5,7 @@ import { obtenerPeliculasTrending } from '../../service/API/obtenerDatosAPI';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { arrayReduce } from '../../utilidades/utilidades';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 const ContenedorItems = styled.div`
@@ -16,16 +17,18 @@ const Cards = ({ data }) => {
     debugger
 
     return (
-        <Card style={{ width: '200px', backgroundColor: "#1A1A1A", marginRight: "20px" }}>
-            <Card.Img style={{ height: "250px", width: "auto" }} variant="top" src={`https://image.tmdb.org/t/p/w200${data.poster_path}`} />
-            <FontAwesomeIcon icon={faBookmark} className="position-absolute" style={{ height: "40px", width: "auto", opacity: "0.9" }} />
-            <Card.Body style={{ height: "165px" }}>
-                <Card.Text style={{ color: "#766A60" }}>
-                    <FontAwesomeIcon icon={faStar} style={{ color: "orange" }} />{data.vote_average}
-                </Card.Text>
-                <Card.Title style={{ color: "white" }}>{data.title}</Card.Title>
-            </Card.Body>
-        </Card>
+        <Link to={`/movie/${data.id}`}>
+            <Card style={{ width: '200px', backgroundColor: "#1A1A1A", marginRight: "20px" }}>
+                <Card.Img style={{ height: "250px", width: "auto" }} variant="top" src={`https://image.tmdb.org/t/p/w200${data.poster_path}`} />
+                <FontAwesomeIcon icon={faBookmark} className="position-absolute" style={{ height: "40px", width: "auto", opacity: "0.9" }} />
+                <Card.Body style={{ height: "165px" }}>
+                    <Card.Text style={{ color: "#766A60" }}>
+                        <FontAwesomeIcon icon={faStar} style={{ color: "orange" }} />{data.vote_average}
+                    </Card.Text>
+                    <Card.Title style={{ color: "white" }}>{data.title}</Card.Title>
+                </Card.Body>
+            </Card>
+        </Link>
     )
 }
 
