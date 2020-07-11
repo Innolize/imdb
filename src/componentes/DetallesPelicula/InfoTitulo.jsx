@@ -58,7 +58,7 @@ const InfoTitulo = ({ data }) => {
                 <ContainerTitulo >
                     <FontAwesomeIcon icon={faBookmark} style={{ height: "50px", width: "40px", color: "gray" }} />
                     <div style={{padding:'0px 10px 0px 10px'}}>
-                        <h1 style={{ color: "white" }}>{`${data.original_title}`} <a style={{ fontSize: "24px", color: "gray" }}>({new Date(data.release_date).getFullYear()})</a></h1>
+                        <h1 style={{ color: "white" }}>{`${data.original_title}`} <a href='google.com' style={{ fontSize: "24px", color: "gray" }}>({new Date(data.release_date).getFullYear()})</a></h1>
                         <div style={{ display: "flex" }}>
                             <InfoSubtitulo>+18: {data.adult ? "Yep" : "Nope"}</InfoSubtitulo><InfoSubtitulo>|</InfoSubtitulo> <InfoSubtitulo>{data.runtime}m</InfoSubtitulo> <InfoSubtitulo>|</InfoSubtitulo> {data.genres.map((x, i) => <InfoSubtitulo key={x.id}>{x.name},</InfoSubtitulo>)} <InfoSubtitulo>|</InfoSubtitulo> <InfoSubtitulo>{data.release_date}</InfoSubtitulo>
                         </div>

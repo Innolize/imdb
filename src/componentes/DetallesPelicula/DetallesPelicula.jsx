@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useFetchReducer } from '../../customHooks/useFetch';
 import { buscarPeliculaPorID } from '../../service/API/obtenerDatosAPI';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faStar } from '@fortawesome/free-solid-svg-icons';
 import Trailer from './Trailer';
 import InfoTitulo from './InfoTitulo';
 

@@ -32,6 +32,6 @@ export const useFetchReducer = (fetchCallback, opcional) => {
             }
         }
         test()
-    }, [fetchCallback])
+    }, [fetchCallback, opcional])
     return state
 }
