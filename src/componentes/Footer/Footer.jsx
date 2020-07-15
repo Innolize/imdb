@@ -5,12 +5,13 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faInstagram, faYoutube, faTwitch } from '@fortawesome/free-brands-svg-icons';
 
 const ContenedorFooter = styled.div`
+    padding: 40px 0px 20px 0px;
     height: 320px;
     background-color: black;
 `
 const RedesSocialesIconos = styled(FontAwesomeIcon)`
     color: white;
-    font-size: 30px;    
+    font-size: 25px;    
     margin-right: 30px;
     &:hover {
         cursor:pointer;
@@ -19,7 +20,7 @@ const RedesSocialesIconos = styled(FontAwesomeIcon)`
 const ContenedorCentrado = styled.div`
     display:flex;
     justify-content: center;
-    padding: 10px 0px 10px 0px;
+    padding: 15px 0px 15px 0px;
     width: 60%;
     margin: auto;
 `

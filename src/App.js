@@ -24,12 +24,7 @@ const LayoutMain = styled.div`
     width: 60%;
   }
 `
-const LayoutPelicula = styled.div`
-  background-color: #333333;
-  width:55%;
-  margin-left: auto;
-  margin-right: auto;
-`
+
 
 
 
@@ -51,9 +46,8 @@ function App() {
         </Route>
         <Route path="/movie/:idPelicula">
           <div style={{ backgroundColor: "#D9D8D3" }}>
-            <LayoutPelicula>
-              <Pelicula />
-            </LayoutPelicula>
+            <Pelicula />
+
           </div>
         </Route>
         <Footer>

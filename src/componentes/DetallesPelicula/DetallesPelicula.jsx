@@ -20,7 +20,15 @@ const ImagenPortada = styled.img`
     padding-right: 5px;
 `
 
-
+const LayoutPelicula = styled.div`
+  background-color: #333333;
+  width:70%;
+  margin-left: auto;
+  margin-right: auto;
+  @media (min-width: 1600px) {
+    width: 55%;
+  }
+`
 
 
 
@@ -41,7 +49,7 @@ export const Pelicula = () => {
     if (data)
         console.log(data)
     return (
-        <>
+        <LayoutPelicula>
             <MainInfo>
                 <InfoTitulo data={data} />
             </MainInfo>
@@ -49,8 +57,11 @@ export const Pelicula = () => {
                 <ImagenPortada src={`https://image.tmdb.org/t/p/original${data.poster_path}`} />
                 <Trailer id={data.id} />
             </ContenedorPortada>
+            <div style={{ fontSize: `18px`, color: `#333`, backgroundColor: `white`, padding: `15px 15px 0px 15px` }}>
+                {data.overview}
+            </div>
             <DescripcionPelicula id={data.id} />
-        </>
+        </LayoutPelicula>
     )
 }
 

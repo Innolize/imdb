@@ -34,7 +34,7 @@ export const DescripcionPelicula = ({ id }) => {
         return (
             <ContenedorDescripcion>
                 <ContenedorInformacion>
-                    <Texto>A covert team of immortal mercenaries are suddenly exposed and must now fight to keep their identity a secret just as an unexpected new member is discovered.</Texto>
+                    <Texto>{descripcion.descripcion}</Texto>
                 </ContenedorInformacion>
                 <ContenedorInformacion>
                     <Texto><strong>Director: </strong>{descripcion.director.name} </Texto>
