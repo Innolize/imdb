@@ -5,6 +5,7 @@ import { useFetchReducer } from '../../customHooks/useFetch';
 import { buscarPeliculaPorID } from '../../service/API/obtenerDatosAPI';
 import Trailer from './Trailer';
 import InfoTitulo from './InfoTitulo';
+import DescripcionPelicula from './DescripcionPelicula';
 
 const MainInfo = styled.div`
     
@@ -24,7 +25,6 @@ const ImagenPortada = styled.img`
 
 
 export const Pelicula = () => {
-    debugger
     const { idPelicula } = useParams()
     const { data, loading, error } = useFetchReducer(buscarPeliculaPorID, idPelicula)
 
@@ -41,16 +41,16 @@ export const Pelicula = () => {
     if (data)
         console.log(data)
     return (
-        <div>
+        <>
             <MainInfo>
                 <InfoTitulo data={data} />
             </MainInfo>
             <ContenedorPortada>
                 <ImagenPortada src={`https://image.tmdb.org/t/p/original${data.poster_path}`} />
                 <Trailer id={data.id} />
-
             </ContenedorPortada>
-        </div >
+            <DescripcionPelicula id={data.id} />
+        </>
     )
 }
 

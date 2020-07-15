@@ -26,12 +26,13 @@ export const useFetchReducer = (fetchCallback, opcional) => {
             try {
                 debugger
                 const data = await fetchCallback(opcional)
+                debugger
                 dispatch({ type: "SUCCESS", payload: data })
             } catch (error) {
                 dispatch({ type: "ERROR" })
             }
         }
         test()
-    }, [fetchCallback, opcional])
+    }, [fetchCallback])
     return state
 }

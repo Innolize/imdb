@@ -9,6 +9,7 @@ import ListaActoresMain from './componentes/ListaActoresMain';
 import styled from '@emotion/styled';
 import Pelicula from './componentes/DetallesPelicula/DetallesPelicula';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Footer from './componentes/Footer/Footer';
 
 
 const Wrapper = styled.div`
@@ -29,6 +30,7 @@ const LayoutPelicula = styled.div`
   margin-left: auto;
   margin-right: auto;
 `
+
 
 
 
@@ -54,6 +56,9 @@ function App() {
             </LayoutPelicula>
           </div>
         </Route>
+        <Footer>
+
+        </Footer>
       </Router>
     </Wrapper>
   );

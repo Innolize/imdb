@@ -30,7 +30,10 @@ export async function buscarPeliculaPorID(id) {
 
 export async function buscarVideosPorId(id) {
     const respuesta = await axios(`${URLBase}movie/${id}/videos?${keyAutorizacion}`)
-    debugger
-    console.log(respuesta)
     return respuesta.data.results
+}
+
+export async function buscarCreditos(id) {
+    const respuesta = await axios(`${URLBase}movie/${id}/credits?${keyAutorizacion}`)
+    return respuesta.data
 }
