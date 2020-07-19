@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './componentes/Header';
+import Header from './componentes/Header/Header'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Carrousel from './componentes/Carousel';
@@ -8,6 +8,7 @@ import ListaPopular from './componentes/peliculasListaMain/ListaPopular';
 import ListaActoresMain from './componentes/ListaActoresMain';
 import styled from '@emotion/styled';
 import Pelicula from './componentes/DetallesPelicula/DetallesPelicula';
+import ResultadosBusqueda from './componentes/BuscarPelicula/ResultadosBusqueda';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Footer from './componentes/Footer/Footer';
 
@@ -47,12 +48,12 @@ function App() {
         <Route path="/movie/:idPelicula">
           <div style={{ backgroundColor: "#D9D8D3" }}>
             <Pelicula />
-
           </div>
         </Route>
-        <Footer>
-
-        </Footer>
+        <Route path={"/search/:valorBusqueda"}>
+          <ResultadosBusqueda />
+        </Route>
+        <Footer />
       </Router>
     </Wrapper>
   );

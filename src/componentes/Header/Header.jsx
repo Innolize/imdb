@@ -4,6 +4,7 @@ import { Badge } from 'react-bootstrap';
 import { faBars, faSearch, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import Buscador from './Buscador';
 
 const StyledHeader = styled.div`
     height:50px;
@@ -20,6 +21,7 @@ const Contenedor = styled.div`
 
 
 const Header = () => {
+
     return (
         <StyledHeader>
             <Contenedor>
@@ -31,10 +33,9 @@ const Header = () => {
                 <Badge variant="outline-light" style={{ display: "flex", cursor: "pointer" }}>
                     <FontAwesomeIcon icon={faBars} style={{ fontSize: "30px" }} /><p style={{ fontSize: "20px", paddingLeft: "5px", margin: "auto" }}>Menu</p>
                 </Badge>
-                <div className="contenedorBusqueda w-50 mt-auto mb-auto">
-                    <input placeholder="Que estás buscando?" style={{ width: "90%" }}></input>
-                    <button style={{ backgroundColor: "black" }}><FontAwesomeIcon icon={faSearch} style={{ fontSize: "20px", color: "white" }} /></button>
-                </div>
+
+                <Buscador></Buscador>
+
                 <h4>
                     <Badge variant="warning">PREMIUM</Badge>
                 </h4>
