@@ -1,38 +1,37 @@
 import { useEffect, useReducer } from 'react'
 
-const initialState = { loading: true, data: null, error: null }
+const initialState = { loading: true, data: [], error: null }
 
 const fetchReducer = (state, action) => {
     const { type, payload } = action;
 
     switch (type) {
         case 'SUCCESS':
-            return { loading: false, data: payload, error: null }
+            return { loading: false, data: [...state.data, ...payload], error: null }
         case 'ERROR':
-            return { loading: false, data: null, error: payload }
+            return { loading: false, data: [], error: payload }
         case 'LOAD':
-            return { loading: true, data: null, error: null }
+            return { ...state, loading: true, error: null }
         default:
             return state
     }
 }
 
-export const useFetchReducer = (fetchCallback, opcional) => {
+export const useFetchReducer = (fetchCallback, opcional, opcional2) => {
     const [state, dispatch] = useReducer(fetchReducer, initialState);
 
     useEffect(() => {
-        const test = async () => {
+        const fetchAPI = async () => {
             dispatch({ type: "LOAD" })
             try {
-                debugger
-                const data = await fetchCallback(opcional)
-                debugger
-                dispatch({ type: "SUCCESS", payload: data })
+                const data = await fetchCallback(opcional, opcional2)
+                dispatch({ type: "SUCCESS", payload: data.results })
+
             } catch (error) {
                 dispatch({ type: "ERROR" })
             }
         }
-        test()
-    }, [fetchCallback])
+        fetchAPI()
+    }, [fetchCallback, opcional, opcional2])
     return state
 }
