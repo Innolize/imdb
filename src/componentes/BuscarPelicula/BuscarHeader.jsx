@@ -4,10 +4,10 @@ import styled from '@emotion/styled';
 const Titulo = styled.h1`
     font-size: 16px;
 `
-const SubTitulo = styled.div`
-    display: flex;
-    color: gray;
-`
+// const SubTitulo = styled.div`
+//     display: flex;
+//     color: gray;
+// `
 
 const BuscarHeader = ({ titulo = 'default' }) => {
     

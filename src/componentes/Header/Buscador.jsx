@@ -3,18 +3,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import styled from '@emotion/styled';
-
-
-
 
 const Buscador = () => {
     const [value, setValue] = useState('')
-    console.log(value)
+
     return (
         <div className="contenedorBusqueda w-50 mt-auto mb-auto">
-            <input onChange={(e) => setValue(e.target.value)} placeholder="Search INNOMDb" style={{ width: "90%" }}></input>
-            <NavLink to={`/search/${value}`} ><button style={{ backgroundColor: "black" }}><FontAwesomeIcon icon={faSearch} style={{ fontSize: "20px", color: "white" }} /></button></NavLink>
+            <input
+                onChange={(e) => setValue(e.target.value)}
+                placeholder="Search INNOMDb"
+                style={{ width: "90%" }}>
+            </input>
+            <NavLink to={`/search/${value}`} >
+                <button
+                    style={{ backgroundColor: "black" }}>
+                    <FontAwesomeIcon
+                        icon={faSearch}
+                        style={{ fontSize: "20px", color: "white" }}
+                    />
+                </button>
+            </NavLink>
         </div>
     )
 }

@@ -9,6 +9,7 @@ import ListaActoresMain from './componentes/ListaActoresMain';
 import styled from '@emotion/styled';
 import Pelicula from './componentes/DetallesPelicula/DetallesPelicula';
 import ResultadosBusqueda from './componentes/BuscarPelicula/ResultadosBusqueda';
+import ResultadoBusquedaVacio from './componentes/BuscarPelicula/ResultadoBusquedaVacio';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Footer from './componentes/Footer/Footer';
 
@@ -50,8 +51,11 @@ function App() {
             <Pelicula />
           </div>
         </Route>
-        <Route path={"/search/:valorBusqueda"}>
+        <Route path="/search/:valorBusqueda">
           <ResultadosBusqueda />
+        </Route>
+        <Route path={'/search/'} exact>
+          <ResultadoBusquedaVacio />
         </Route>
         <Footer />
       </Router>

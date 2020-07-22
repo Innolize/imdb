@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useFetchReducer } from '../../customHooks/useFetch';
+import { useFetchReducerAcumulativo } from '../../customHooks/useFetchScroll';
 import { buscarValor } from '../../service/API/obtenerDatosAPI';
 import BuscarHeader from './BuscarHeader';
 import styled from '@emotion/styled';
 import ListaResultado from './ListaResultado';
-import { Prev } from 'react-bootstrap/PageItem';
+
 
 const Contenedor = styled.div`
     background-color: #E3E2DD;
@@ -38,11 +38,7 @@ const ContenedorResultados = styled.div`
 const ResultadoBusqueda = () => {
     const { valorBusqueda } = useParams()
     const [pagina, setPagina] = useState(1)
-    console.log(pagina)
-
-
-    const { data, loading, error } = useFetchReducer(buscarValor, valorBusqueda, pagina)
-
+    const { data, loading, error } = useFetchReducerAcumulativo(buscarValor, valorBusqueda, pagina)
 
     function handleScroll(event) {
         const { scrollTop, clientHeight, scrollHeight } = event.currentTarget
@@ -51,18 +47,20 @@ const ResultadoBusqueda = () => {
             setPagina(pagina + 1)
         }
     }
-
-
-
-
-    if (loading)
-        return <div style={{ minHeight: '1000px' }}>loading</div>
+    debugger
+    if (valorBusqueda === '')
+        return (
+            <Contenedor>
+                <ContenedorCentral>
+                    
+                </ContenedorCentral>
+            </Contenedor>
+        )
 
     if (error)
         return <div>error</div>
 
     if (data)
-
         return (
             <Contenedor>
                 <ContenedorCentral>
@@ -76,6 +74,8 @@ const ResultadoBusqueda = () => {
                 </ContenedorCentral>
             </Contenedor>
         )
+    if (loading)
+        return <div >loading</div>
 }
 
 export default ResultadoBusqueda

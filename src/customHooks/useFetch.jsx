@@ -7,11 +7,11 @@ const fetchReducer = (state, action) => {
 
     switch (type) {
         case 'SUCCESS':
-            return { loading: false, data: [...state.data, ...payload], error: null }
+            return { loading: false, data: payload, error: null }
         case 'ERROR':
-            return { loading: false, data: [], error: payload }
+            return { loading: false, data: null, error: payload }
         case 'LOAD':
-            return { ...state, loading: true, error: null }
+            return { loading: true, data: null, error: null }
         default:
             return state
     }
@@ -25,7 +25,7 @@ export const useFetchReducer = (fetchCallback, opcional, opcional2) => {
             dispatch({ type: "LOAD" })
             try {
                 const data = await fetchCallback(opcional, opcional2)
-                dispatch({ type: "SUCCESS", payload: data.results })
+                dispatch({ type: "SUCCESS", payload: data })
 
             } catch (error) {
                 dispatch({ type: "ERROR" })

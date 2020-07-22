@@ -47,22 +47,21 @@ export const Pelicula = () => {
         )
 
     if (data)
-        console.log(data)
-    return (
-        <LayoutPelicula>
-            <MainInfo>
-                <InfoTitulo data={data} />
-            </MainInfo>
-            <ContenedorPortada>
-                <ImagenPortada src={`https://image.tmdb.org/t/p/original${data.poster_path}`} />
-                <Trailer id={data.id} />
-            </ContenedorPortada>
-            <div style={{ fontSize: `18px`, color: `#333`, backgroundColor: `white`, padding: `15px 15px 0px 15px` }}>
-                {data.overview}
-            </div>
-            <DescripcionPelicula id={data.id} />
-        </LayoutPelicula>
-    )
+        return (
+            <LayoutPelicula>
+                <MainInfo>
+                    <InfoTitulo data={data} />
+                </MainInfo>
+                <ContenedorPortada>
+                    <ImagenPortada src={`https://image.tmdb.org/t/p/original${data.poster_path}`} />
+                    <Trailer id={data.id} />
+                </ContenedorPortada>
+                <div style={{ fontSize: `18px`, color: `#333`, backgroundColor: `white`, padding: `15px 15px 0px 15px` }}>
+                    {data.overview}
+                </div>
+                <DescripcionPelicula id={data.id} />
+            </LayoutPelicula>
+        )
 }
 
 export default Pelicula

@@ -27,10 +27,8 @@ export const DescripcionPelicula = ({ id }) => {
             <div>cargando</div>
         )
     if (data) {
-        debugger
-        let descripcion = new DescripcionDatos(data)
         console.log(data)
-        console.log(descripcion)
+        let descripcion = new DescripcionDatos(data)
         return (
             <ContenedorDescripcion>
                 <ContenedorInformacion>
