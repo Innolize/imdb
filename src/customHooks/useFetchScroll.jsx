@@ -1,4 +1,5 @@
-import { useEffect, useReducer } from 'react'
+import { useEffect, useReducer, useContext } from 'react'
+import { CacheContext } from '../CacheContext'
 
 const initialState = { loading: true, data: [], error: null, busqueda: '' }
 
@@ -19,24 +20,30 @@ const fetchReducer = (state, action) => {
     }
 }
 
-export const useFetchReducerAcumulativo = (fetchCallback, valorBusqueda, valorOpcional) => {
+export const useFetchReducerAcumulativo = (fetchCallback, valorBusqueda, valorOpcional = '') => {
+    const cache = useContext(CacheContext)
     const [state, dispatch] = useReducer(fetchReducer, initialState);
 
     useEffect(() => {
+        if (cache.state !== null && cache.state[valorBusqueda + valorOpcional]) {
+            dispatch({ type: "SUCCESS", payload: cache.state[`${valorBusqueda}${valorOpcional}`] })
+            return
+        }
         const fetchAPI = async () => {
             if (state.busqueda !== valorBusqueda) {
                 dispatch({ type: 'BUSQUEDA', payload: valorBusqueda })
             }
+
             dispatch({ type: "LOAD" })
             try {
                 const data = await fetchCallback(valorBusqueda, valorOpcional)
                 dispatch({ type: "SUCCESS", payload: data.results })
-
+                cache.dispatch({ type: 'SET_CACHE', payload: { key: `${valorBusqueda}${valorOpcional}`, value: data.results } })
             } catch (error) {
                 dispatch({ type: "ERROR" })
             }
         }
         fetchAPI()
-    }, [fetchCallback, valorBusqueda, valorOpcional])
+    }, [fetchCallback, valorBusqueda, valorOpcional, cache])
     return state
 }

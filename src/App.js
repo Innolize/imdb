@@ -12,6 +12,7 @@ import ResultadosBusqueda from './componentes/BuscarPelicula/ResultadosBusqueda'
 import ResultadoBusquedaVacio from './componentes/BuscarPelicula/ResultadoBusquedaVacio';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Footer from './componentes/Footer/Footer';
+import { CacheProvider } from './CacheContext';
 
 
 const Wrapper = styled.div`
@@ -34,31 +35,33 @@ const LayoutMain = styled.div`
 function App() {
   return (
     <Wrapper>
-      <Router>
-        <Header></Header>
-        <Route path="/" exact>
-          <div style={{ backgroundColor: "black" }}>
-            <LayoutMain>
-              <Carrousel />
-              <ListaTrending />
-              <ListaPopular />
-              <ListaActoresMain />
-            </LayoutMain>
-          </div>
-        </Route>
-        <Route path="/movie/:idPelicula">
-          <div style={{ backgroundColor: "#D9D8D3" }}>
-            <Pelicula />
-          </div>
-        </Route>
-        <Route path="/search/:valorBusqueda">
-          <ResultadosBusqueda />
-        </Route>
-        <Route path={'/search/'} exact>
-          <ResultadoBusquedaVacio />
-        </Route>
-        <Footer />
-      </Router>
+      <CacheProvider>
+        <Router>
+          <Header></Header>
+          <Route path="/" exact>
+            <div style={{ backgroundColor: "black" }}>
+              <LayoutMain>
+                <Carrousel />
+                <ListaTrending />
+                <ListaPopular />
+                <ListaActoresMain />
+              </LayoutMain>
+            </div>
+          </Route>
+          <Route path="/movie/:idPelicula">
+            <div style={{ backgroundColor: "#D9D8D3" }}>
+              <Pelicula />
+            </div>
+          </Route>
+          <Route path="/search/:valorBusqueda">
+            <ResultadosBusqueda />
+          </Route>
+          <Route path={'/search/'} exact>
+            <ResultadoBusquedaVacio />
+          </Route>
+          <Footer />
+        </Router>
+      </CacheProvider>
     </Wrapper>
   );
 }
