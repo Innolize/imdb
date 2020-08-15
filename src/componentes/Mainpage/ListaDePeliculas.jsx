@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Carousel } from 'react-bootstrap';
+import { Card, Carousel, Spinner } from 'react-bootstrap';
 import { useFetchReducer } from '../../customHooks/useFetch';
 import { obtenerPeliculasTrending } from '../../service/API/obtenerDatosAPI';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +14,6 @@ const ContenedorItems = styled.div`
 `
 
 const Cards = ({ data }) => {
-    debugger
 
     return (
         <Link to={`/movie/${data.id}`}>
@@ -36,7 +35,11 @@ const ListaDePeliculas = ({ callbackAPI = obtenerPeliculasTrending, tituloLista 
     const { data, loading, error } = useFetchReducer(callbackAPI)
     if (loading)
         return (
-            <div>loading</div>
+            <div style={{ height: '380px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            </div>
         )
     if (error)
         return (

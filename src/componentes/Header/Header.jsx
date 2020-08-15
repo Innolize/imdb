@@ -7,17 +7,26 @@ import { Link } from 'react-router-dom';
 import Buscador from './Buscador';
 
 const StyledHeader = styled.div`
+    display: flex;
+    justify-content: center;
     height:50px;
     width:100%;
     background-color: #181818;
     color: white;
-    display:flex;
+
 `
 const Contenedor = styled.div`
-    margin: auto;
     display: flex;
-    width: 60%;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 50px 0px 50px;
+    width:100%;
+    @media (min-width: 1600px) {
+        width: 60%;
+    }
 `
+
+
 
 
 const Header = () => {
@@ -45,6 +54,7 @@ const Header = () => {
                 <Badge variant="outline-light" style={{ display: "flex", cursor: "pointer" }}>
                     <p style={{ fontSize: "15px", paddingLeft: "5px", margin: "auto" }}>Sign in</p>
                 </Badge>
+
             </Contenedor>
         </StyledHeader >
     )

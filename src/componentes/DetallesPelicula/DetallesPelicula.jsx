@@ -30,6 +30,10 @@ const LayoutPelicula = styled.div`
   }
 `
 
+const Wrapper = styled.div`
+    background-color:#D9D8D3;
+`
+
 
 
 export const Pelicula = () => {
@@ -48,19 +52,21 @@ export const Pelicula = () => {
 
     if (data)
         return (
-            <LayoutPelicula>
-                <MainInfo>
-                    <InfoTitulo data={data} />
-                </MainInfo>
-                <ContenedorPortada>
-                    <ImagenPortada src={`https://image.tmdb.org/t/p/original${data.poster_path}`} />
-                    <Trailer id={data.id} />
-                </ContenedorPortada>
-                <div style={{ fontSize: `18px`, color: `#333`, backgroundColor: `white`, padding: `15px 15px 0px 15px` }}>
-                    {data.overview}
-                </div>
-                <DescripcionPelicula id={data.id} />
-            </LayoutPelicula>
+            <Wrapper>
+                <LayoutPelicula>
+                    <MainInfo>
+                        <InfoTitulo data={data} />
+                    </MainInfo>
+                    <ContenedorPortada>
+                        <ImagenPortada src={`https://image.tmdb.org/t/p/original${data.poster_path}`} />
+                        <Trailer id={data.id} />
+                    </ContenedorPortada>
+                    <div style={{ fontSize: `18px`, color: `#333`, backgroundColor: `white`, padding: `15px 15px 0px 15px` }}>
+                        {data.overview}
+                    </div>
+                    <DescripcionPelicula id={data.id} />
+                </LayoutPelicula>
+            </Wrapper>
         )
 }
 

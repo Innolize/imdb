@@ -4,7 +4,6 @@ export const CacheContext = createContext();
 CacheContext.displayName = 'Cache';
 
 const cacheReducer = (state, action) => {
-    debugger
     const { type, payload } = action;
 
     switch (type) {

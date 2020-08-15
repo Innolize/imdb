@@ -2,16 +2,27 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { buscarVideosPorId } from '../../service/API/obtenerDatosAPI';
 import { useFetchReducer } from '../../customHooks/useFetch';
+import { Spinner } from 'react-bootstrap'
 
 const TrailerPelicula = styled.iframe`
+    width: 720px;
+    height: 480px;
+`
+
+const ContenedorLoading = styled.div`
+    width: 720px;
+    height: 480px;
 `
 
 export const Trailer = ({ id }) => {
     const { data, loading, error } = useFetchReducer(buscarVideosPorId, id)
-    console.log(data)
     if (loading)
         return (
-            <div>cargando</div>
+            <ContenedorLoading>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            </ContenedorLoading>
         )
 
     if (error || data.length === 0)
@@ -20,9 +31,8 @@ export const Trailer = ({ id }) => {
         )
 
     if (data)
-    console.log(data)
         return (
-            < TrailerPelicula width="720" height="480" frameBorder="0" title="asd" src={`https://www.youtube.com/embed/${data[0].key}?controls=1&mute=1&autoplay=1`} >
+            < TrailerPelicula frameBorder="0" src={`https://www.youtube.com/embed/${data[0].key}?controls=1&mute=1&autoplay=1`} >
             </TrailerPelicula >
 
         )

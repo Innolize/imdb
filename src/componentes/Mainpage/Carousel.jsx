@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel, Spinner } from 'react-bootstrap';
-import { obtenerEstrenos } from '../service/API/obtenerDatosAPI';
+import { obtenerEstrenos } from '../../service/API/obtenerDatosAPI';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
@@ -21,7 +21,7 @@ const CuadroCarousel = ({ data }) => {
 
 
     return (
-        <Carousel className="letra-borde" activeIndex={index} onSelect={handleSelect} style={{ width: "100%", height: "auto", paddingTop: "20px", marginBottom: "20px" }}>
+        <Carousel className="letra-borde" activeIndex={index} onSelect={handleSelect} style={{ height: '700px', width: "100%", paddingTop: "20px", marginBottom: "20px" }}>
             {data && data.map((x, i) =>
 
                 <Carousel.Item key={i}>
@@ -64,9 +64,14 @@ const CarouselComponente = () => {
 
     if (imagenesCarousel === "")
         return (
-            <Spinner animation="border" role="status">
-                <span className="sr-only">Loading...</span>
-            </Spinner>
+            <div style={{
+                height: '700px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+                <Spinner animation="border" role="status" />
+            </div>
         )
 
     if (imagenesCarousel)

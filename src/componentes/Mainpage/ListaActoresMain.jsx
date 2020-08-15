@@ -1,8 +1,8 @@
 import React from 'react';
-import { Carousel } from 'react-bootstrap';
-import { obtenerActoresPopulares } from '../service/API/obtenerDatosAPI';
-import { useFetchReducer } from '../customHooks/useFetch';
-import { arrayReduce } from '../utilidades/utilidades';
+import { Carousel, Spinner } from 'react-bootstrap';
+import { obtenerActoresPopulares } from '../../service/API/obtenerDatosAPI';
+import { useFetchReducer } from '../../customHooks/useFetch';
+import { arrayReduce } from '../../utilidades/utilidades';
 import styled from '@emotion/styled';
 
 const ContenedorCarta = styled.div`
@@ -40,7 +40,7 @@ const ActorCard = ({ data }) => {
 
         <ContenedorCarta>
             <ImagenActor src={`https://image.tmdb.org/t/p/w200${data.profile_path}`} />
-            <ContenedorText style={{ textAlign: "center" }}>
+            <ContenedorText >
                 <NombreActor>{data.name}</NombreActor>
                 <SeguidoresActores>
                     Followers: {data.popularity}
@@ -56,7 +56,11 @@ const ListaActoresMain = () => {
     const { data, loading, error } = useFetchReducer(obtenerActoresPopulares)
     if (loading)
         return (
-            <div>loading</div>
+            <div style={{ height: '380px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            </div>
         )
     if (error)
         return (

@@ -44,6 +44,6 @@ export const useFetchReducerAcumulativo = (fetchCallback, valorBusqueda, valorOp
             }
         }
         fetchAPI()
-    }, [fetchCallback, valorBusqueda, valorOpcional, cache])
+    }, [fetchCallback, valorBusqueda, valorOpcional, cache, state.busqueda])
     return state
 }

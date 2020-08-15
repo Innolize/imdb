@@ -7,23 +7,22 @@ import styled from '@emotion/styled';
 import ListaResultado from './ListaResultado';
 
 
-const Contenedor = styled.div`
+const Wrapper = styled.div`
     background-color: #E3E2DD;
+    display:flex;
+    justify-content: center;
 `
 const ContenedorCentral = styled.div`
-    margin-left: auto;
-    margin-right: auto;
+    display:flex;    
     min-height:400px;
     width:60%;
     background-color: white;
-    display:flex;
 `
 const ContenedorPrincipal = styled.div`
     width: 850px;
-
 `
 const ContenedorSidebar = styled.div`
-    width: 250px;  
+    width: 250px;
 `
 const ContenedorResultados = styled.div`
     overflow-y: scroll;
@@ -42,27 +41,17 @@ const ResultadoBusqueda = () => {
 
     function handleScroll(event) {
         const { scrollTop, clientHeight, scrollHeight } = event.currentTarget
-        console.log(scrollTop, clientHeight, scrollHeight)
         if ((scrollTop + clientHeight) === scrollHeight) {
             setPagina(pagina + 1)
         }
     }
-    debugger
-    if (valorBusqueda === '')
-        return (
-            <Contenedor>
-                <ContenedorCentral>
-                    
-                </ContenedorCentral>
-            </Contenedor>
-        )
 
     if (error)
         return <div>error</div>
 
     if (data)
         return (
-            <Contenedor>
+            <Wrapper>
                 <ContenedorCentral>
                     <ContenedorPrincipal>
                         <ContenedorResultados onScroll={handleScroll}>
@@ -72,7 +61,7 @@ const ResultadoBusqueda = () => {
                     </ContenedorPrincipal>
                     <ContenedorSidebar>asd</ContenedorSidebar>
                 </ContenedorCentral>
-            </Contenedor>
+            </Wrapper>
         )
     if (loading)
         return <div >loading</div>
