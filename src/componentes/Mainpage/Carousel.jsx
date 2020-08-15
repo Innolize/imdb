@@ -53,7 +53,6 @@ const CarouselComponente = () => {
     const [imagenesCarousel, setImagenesCarousel] = useState("")
 
     useEffect(() => {
-        console.log(imagenesCarousel)
         if (imagenesCarousel === "") {
             async function test() {
                 setImagenesCarousel(await obtenerEstrenos())

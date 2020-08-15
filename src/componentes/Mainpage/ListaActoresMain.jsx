@@ -66,8 +66,6 @@ const ListaActoresMain = () => {
         return (
             <div>error</div>
         )
-    console.log(data)
-    debugger
     if (data)
 
 
