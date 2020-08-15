@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Badge } from 'react-bootstrap';
-import { faBars, faSearch, faBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import Buscador from './Buscador';
