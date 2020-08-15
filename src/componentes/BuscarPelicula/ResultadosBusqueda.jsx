@@ -39,10 +39,13 @@ const ResultadoBusqueda = () => {
     const [pagina, setPagina] = useState(1)
     const { data, loading, error } = useFetchReducerAcumulativo(buscarValor, valorBusqueda, pagina)
 
+
     function handleScroll(event) {
+        console.log(pagina)
         const { scrollTop, clientHeight, scrollHeight } = event.currentTarget
         if ((scrollTop + clientHeight) === scrollHeight) {
             setPagina(pagina + 1)
+
         }
     }
 

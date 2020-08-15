@@ -50,7 +50,7 @@ const InfoTitulo = ({ data }) => {
     return (
         <>
             <HeaderInfo>
-                <HeaderLinks to={`/fullcast/${data.id}`}>FULL CAST</HeaderLinks><span>|</span><HeaderLinks to={`/reviews${data.id}`}>USER REVIEWS</HeaderLinks><span>|</span><HeaderLinks to={"/pro"}>INNOPRO</HeaderLinks><span>|</span><HeaderLinks to={"www.google.com"}>SHARE</HeaderLinks>
+                <HeaderLinks to={`/fullcast/${data.id}`}>FULL CAST</HeaderLinks><span>|</span><HeaderLinks to={`/reviews${data.id}`}>USER REVIEWS</HeaderLinks><span>|</span><HeaderLinks to={"/pro"}>INNOPRO</HeaderLinks><span>|</span><HeaderLinks to={"/"}>SHARE</HeaderLinks>
             </HeaderInfo>
             <ContenedorEstilado>
                 <ContainerTitulo >
