@@ -4,9 +4,6 @@ import ListaDePeliculas from './ListaDePeliculas';
 
 
 const ListaPopular = () => {
-
-
-
     return (
         <ListaDePeliculas callbackAPI={obtenerPeliculasPopulares} tituloLista="Popular movies" subTituloLista="Most popular movies" />
     )
