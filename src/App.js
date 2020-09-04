@@ -1,25 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from './componentes/Header/Header'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import styled from '@emotion/styled';
+import Mainpage from './componentes/Mainpage'
+import Pelicula from './componentes/DetallesPelicula/DetallesPelicula';
+import ResultadosBusqueda from './componentes/BuscarPelicula/ResultadosBusqueda';
+import ResultadoBusquedaVacio from './componentes/BuscarPelicula/ResultadoBusquedaVacio';
+import Footer from './componentes/Footer/Footer';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+const Wrapper = styled.div`
+  font-family: 'Lato', sans-serif;
+  
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <Router>
+        <Header />
+        <Route path="/" exact>
+          <Mainpage />
+        </Route>
+        <Route path="/movie/:idPelicula">
+          <Pelicula />
+        </Route>
+        <Route path="/search/:valorBusqueda">
+          <ResultadosBusqueda />
+        </Route>
+        <Route path={'/search/'} exact>
+          <ResultadoBusquedaVacio />
+        </Route>
+        <Footer />
+      </Router>
+    </Wrapper>
   );
 }
 
