@@ -26,9 +26,6 @@ const Contenedor = styled.div`
     }
 `
 
-
-
-
 const Header = () => {
 
     return (

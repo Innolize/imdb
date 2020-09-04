@@ -37,7 +37,14 @@ export async function buscarCreditos(id) {
     const respuesta = await axios(`${URLBase}movie/${id}/credits?${keyAutorizacion}`)
     return respuesta.data
 }
-export async function buscarValor(valor, pagina= '1') {
+export async function buscarValor(valor, pagina = '1') {
     const respuesta = await axios(`${URLBase}search/movie?${keyAutorizacion}&query=${valor}&page=${pagina}`)
     return respuesta.data
 }
+
+// export async function buscarPeliculaPorIDTest(props) {
+//     const { id } = props
+//     const respuesta = await axios(`${URLBase}movie/${id}?${keyAutorizacion}`)
+//     console.log(respuesta.data)
+//     return respuesta.data
+// }

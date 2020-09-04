@@ -9,7 +9,6 @@ import ResultadosBusqueda from './componentes/BuscarPelicula/ResultadosBusqueda'
 import ResultadoBusquedaVacio from './componentes/BuscarPelicula/ResultadoBusquedaVacio';
 import Footer from './componentes/Footer/Footer';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { CacheProvider } from './CacheContext';
 
 const Wrapper = styled.div`
   font-family: 'Lato', sans-serif;
@@ -19,24 +18,22 @@ const Wrapper = styled.div`
 function App() {
   return (
     <Wrapper>
-      <CacheProvider>
-        <Router>
-          <Header />
-          <Route path="/" exact>
-            <Mainpage />
-          </Route>
-          <Route path="/movie/:idPelicula">
-            <Pelicula />
-          </Route>
-          <Route path="/search/:valorBusqueda">
-            <ResultadosBusqueda />
-          </Route>
-          <Route path={'/search/'} exact>
-            <ResultadoBusquedaVacio />
-          </Route>
-          <Footer />
-        </Router>
-      </CacheProvider>
+      <Router>
+        <Header />
+        <Route path="/" exact>
+          <Mainpage />
+        </Route>
+        <Route path="/movie/:idPelicula">
+          <Pelicula />
+        </Route>
+        <Route path="/search/:valorBusqueda">
+          <ResultadosBusqueda />
+        </Route>
+        <Route path={'/search/'} exact>
+          <ResultadoBusquedaVacio />
+        </Route>
+        <Footer />
+      </Router>
     </Wrapper>
   );
 }
