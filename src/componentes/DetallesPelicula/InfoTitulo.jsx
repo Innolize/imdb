@@ -47,6 +47,8 @@ const ContenedorDerecho = styled.div`
  `
 
 const InfoTitulo = ({ data }) => {
+
+    console.log(data)
     return (
         <>
             <HeaderInfo>
@@ -56,9 +58,9 @@ const InfoTitulo = ({ data }) => {
                 <ContainerTitulo >
                     <FontAwesomeIcon icon={faBookmark} style={{ height: "50px", width: "40px", color: "gray" }} />
                     <div style={{ padding: '0px 10px 0px 10px' }}>
-                        <h1 style={{ color: "white" }}>{`${data.original_title}`} <a href='google.com' style={{ fontSize: "24px", color: "gray" }}>({new Date(data.release_date).getFullYear()})</a></h1>
+                        <h1 style={{ color: "white" }}>{`${data.title}`} <a href='google.com' style={{ fontSize: "24px", color: "gray" }}>({new Date(data.release_date).getFullYear()})</a></h1>
                         <div style={{ display: "flex" }}>
-                            {data.adult && <InfoSubtitulo> +18 |</InfoSubtitulo>} <InfoSubtitulo>{data.runtime}m</InfoSubtitulo> <InfoSubtitulo>|</InfoSubtitulo><InfoSubtitulo>{data.genres.map(x => x.name).join()}</InfoSubtitulo> <InfoSubtitulo>|</InfoSubtitulo> <InfoSubtitulo>{data.release_date}</InfoSubtitulo>
+                            {data.adult && <InfoSubtitulo> +18 |</InfoSubtitulo>} <InfoSubtitulo>{data.runtime}m</InfoSubtitulo> <InfoSubtitulo>|</InfoSubtitulo><InfoSubtitulo>{data.genres.map(x => x.name).join(", ")}</InfoSubtitulo> <InfoSubtitulo>|</InfoSubtitulo> <InfoSubtitulo>{data.release_date}</InfoSubtitulo>
                         </div>
                     </div>
                 </ContainerTitulo>

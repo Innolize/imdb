@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
-import useFetchReducerWithCache from '../../customHooks/useFetchWithCache';
+import { useFetchReducer } from '../../customHooks/useFetch'
+// import useFetchReducerWithCache from '../../customHooks/useFetchWithCache';
 import { buscarPeliculaPorID } from '../../service/API/obtenerDatosAPI';
 import Trailer from './Trailer';
 import InfoTitulo from './InfoTitulo';
@@ -38,7 +39,7 @@ const Wrapper = styled.div`
 
 export const Pelicula = () => {
     const { idPelicula } = useParams()
-    const { data, loading, error } = useFetchReducerWithCache(buscarPeliculaPorID, idPelicula)
+    const { data, loading, error } = useFetchReducer(buscarPeliculaPorID, idPelicula)
 
     if (loading)
         return <div>cargando</div>
