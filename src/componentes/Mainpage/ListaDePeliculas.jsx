@@ -1,71 +1,17 @@
 import React from "react";
-import { Card, Carousel, Spinner } from "react-bootstrap";
+import { Carousel, Spinner } from "react-bootstrap";
 import { useFetchReducer } from "../../customHooks/useFetch";
 import { obtenerPeliculasTrending } from "../../service/API/obtenerDatosAPI";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { arrayReduce } from "../../utilidades/utilidades";
-import { Link } from "react-router-dom";
+import { ThumbnailPelicula } from "./Thumbnail";
 import styled from "@emotion/styled";
 
 const ContenedorItems = styled.div`
   display: flex;
+  justify-content: center;
   margin-left: 30px;
   height: 400px;
 `;
-
-const ContenedorThumbnail = styled(Card)`
-  width: 200px;
-  background-color: #1a1a1a;
-  margin-right: 20px;
-`;
-
-const ImagenThumbnail = styled(Card.Img)`
-  height: 250px;
-  width: auto;
-`;
-
-const IconoGuardarPelicula = styled(FontAwesomeIcon)`
-  color: black;
-  font-size: 35px;
-  width: auto;
-  position: absolute;
-  opacity: 0.9;
-`;
-
-const CuerpoDePelicula = styled(Card.Body)`
-  padding: 10px;
-  height: 165px;
-`;
-const PuntuacionPelicula = styled(Card.Text)`
-  color: #766a60;
-`;
-
-const TituloDePelicula = styled(Card.Text)`
-  color: white;
-  font-size: 18px;
-`;
-
-const ThumbnailPelicula = ({ data }) => {
-  return (
-    <Link to={`/movie/${data.id}`}>
-      <ContenedorThumbnail>
-        <ImagenThumbnail
-          variant="top"
-          src={`https://image.tmdb.org/t/p/w200${data.poster_path}`}
-        />
-        <IconoGuardarPelicula icon={faBookmark} />
-        <CuerpoDePelicula>
-          <PuntuacionPelicula>
-            <FontAwesomeIcon icon={faStar} style={{ color: "orange" }} />
-            {data.vote_average}
-          </PuntuacionPelicula>
-          <TituloDePelicula>{data.title}</TituloDePelicula>
-        </CuerpoDePelicula>
-      </ContenedorThumbnail>
-    </Link>
-  );
-};
 
 const ListaDePeliculas = ({
   callbackAPI = obtenerPeliculasTrending,
@@ -115,7 +61,7 @@ const ListaDePeliculas = ({
             >
               {arrayReduce(data, 5).map((x, i) => (
                 <Carousel.Item key={i}>
-                  <ContenedorItems>
+                  <ContenedorItems justify="center">
                     {x &&
                       x.map((cardData, j) => (
                         <ThumbnailPelicula
