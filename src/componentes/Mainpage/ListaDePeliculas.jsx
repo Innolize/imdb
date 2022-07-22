@@ -13,6 +13,32 @@ const ContenedorItems = styled.div`
   height: 400px;
 `;
 
+const ContenedorSpinner = styled.div`
+  height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CarouselEstilado = styled(Carousel)`
+  width: 100%;
+  height: auto;
+  margintop: 20px;
+  marginbottom: 20px;
+`;
+const ContenedorLista = styled.div`
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
+const TituloLista = styled.h3`
+  color: #ffc107;
+  font-weight: bold;
+`;
+
+const SubTituloLista = styled.h4`
+  color: gray;
+  font-weight: bold;
+`;
 const ListaDePeliculas = ({
   callbackAPI = obtenerPeliculasTrending,
   tituloLista = "",
@@ -21,61 +47,36 @@ const ListaDePeliculas = ({
   const { data, loading, error } = useFetchReducer(callbackAPI);
   if (loading)
     return (
-      <div
-        style={{
-          height: "380px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      </div>
+      <ContenedorSpinner>
+        <Spinner animation="border" role="status"></Spinner>
+        <span className="sr-only">Loading...</span>
+      </ContenedorSpinner>
     );
   if (error) return <div>error</div>;
   if (data)
     return (
-      <>
-        <div style={{ paddingTop: "10px", paddingBotom: "10px" }}>
-          <h3 style={{ color: "#FFC107" }}>
-            <strong>{tituloLista}</strong>
-          </h3>
-          {subTituloLista && (
-            <h5 style={{ color: "gray" }}>
-              <strong>{subTituloLista}</strong>
-            </h5>
-          )}
+      <ContenedorLista>
+        <TituloLista>{tituloLista}</TituloLista>
+        {subTituloLista && <SubTituloLista>{subTituloLista}</SubTituloLista>}
 
-          {data && (
-            <Carousel
-              interval={null}
-              indicators={false}
-              style={{
-                width: "100%",
-                height: "auto",
-                marginTop: "20px",
-                marginBottom: "20px",
-              }}
-            >
-              {arrayReduce(data, 5).map((x, i) => (
-                <Carousel.Item key={i}>
-                  <ContenedorItems justify="center">
-                    {x &&
-                      x.map((cardData, j) => (
-                        <ThumbnailPelicula
-                          data={cardData}
-                          key={j}
-                        ></ThumbnailPelicula>
-                      ))}
-                  </ContenedorItems>
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          )}
-        </div>
-      </>
+        {data && (
+          <CarouselEstilado interval={null} indicators={false}>
+            {arrayReduce(data, 5).map((x, i) => (
+              <Carousel.Item key={i}>
+                <ContenedorItems justify="center">
+                  {x &&
+                    x.map((cardData, j) => (
+                      <ThumbnailPelicula
+                        data={cardData}
+                        key={j}
+                      ></ThumbnailPelicula>
+                    ))}
+                </ContenedorItems>
+              </Carousel.Item>
+            ))}
+          </CarouselEstilado>
+        )}
+      </ContenedorLista>
     );
 };
 
