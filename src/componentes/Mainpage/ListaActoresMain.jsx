@@ -74,8 +74,10 @@ const ListaActoresMain = () => {
   if (data)
     return (
       <>
-        <h3 style={{ color: "#FFC107", paddingTop: "10px" }}>
-          <strong>Popular actors</strong>
+        <h3
+          style={{ color: "#FFC107", paddingTop: "10px", fontWeight: "bold" }}
+        >
+          Popular actors
         </h3>
         <div className="d-flex pt-3">
           <Carousel
@@ -85,7 +87,6 @@ const ListaActoresMain = () => {
               width: "100%",
               height: "auto",
               marginTop: "20px",
-              marginBottom: "20px",
             }}
           >
             {arrayReduce(data, 5).map((actores, i) => (

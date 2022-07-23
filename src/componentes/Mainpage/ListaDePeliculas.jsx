@@ -1,10 +1,11 @@
 import React from "react";
-import { Carousel, Spinner } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 import { useFetchReducer } from "../../customHooks/useFetch";
 import { obtenerPeliculasTrending } from "../../service/API/obtenerDatosAPI";
 import { arrayReduce } from "../../utilidades/utilidades";
 import { ThumbnailPelicula } from "./Thumbnail";
 import styled from "@emotion/styled";
+import { SpinnerPersonalizado } from "../Common/Spinner";
 
 const ContenedorItems = styled.div`
   display: flex;
@@ -13,18 +14,10 @@ const ContenedorItems = styled.div`
   height: 400px;
 `;
 
-const ContenedorSpinner = styled.div`
-  height: 380px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const CarouselEstilado = styled(Carousel)`
   width: 100%;
   height: auto;
   margintop: 20px;
-  marginbottom: 20px;
 `;
 const ContenedorLista = styled.div`
   padding-top: 10px;
@@ -47,10 +40,7 @@ const ListaDePeliculas = ({
   const { data, loading, error } = useFetchReducer(callbackAPI);
   if (loading)
     return (
-      <ContenedorSpinner>
-        <Spinner animation="border" role="status"></Spinner>
-        <span className="sr-only">Loading...</span>
-      </ContenedorSpinner>
+      <SpinnerPersonalizado></SpinnerPersonalizado>
     );
   if (error) return <div>error</div>;
   if (data)
