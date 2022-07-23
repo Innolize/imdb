@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel, Spinner } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 import { obtenerActoresPopulares } from "../../service/API/obtenerDatosAPI";
 import { useFetchReducer } from "../../customHooks/useFetch";
 import { arrayReduce } from "../../utilidades/utilidades";
