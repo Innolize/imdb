@@ -4,6 +4,7 @@ import { obtenerActoresPopulares } from "../../service/API/obtenerDatosAPI";
 import { useFetchReducer } from "../../customHooks/useFetch";
 import { arrayReduce } from "../../utilidades/utilidades";
 import styled from "@emotion/styled";
+import { SpinnerPersonalizado } from "../Common/Spinner";
 
 const ContenedorCarta = styled.div`
   color: white;
@@ -39,6 +40,12 @@ const ContenedorItems = styled.div`
   margin-left: 30px;
 `;
 
+const CarouselEstilado = styled(Carousel)`
+  width: 100%;
+  height: auto;
+  margintop: 20px;
+`;
+
 const ActorCard = ({ data }) => {
   return (
     <ContenedorCarta>
@@ -53,53 +60,31 @@ const ActorCard = ({ data }) => {
   );
 };
 
+const TituloListaActores = styled.h3`
+  color: #ffc107;
+  padding-top: 10px;
+  font-weight: bold;
+`;
+
 const ListaActoresMain = () => {
   const { data, loading, error } = useFetchReducer(obtenerActoresPopulares);
-  if (loading)
-    return (
-      <div
-        style={{
-          height: "380px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      </div>
-    );
+  if (loading) return <SpinnerPersonalizado></SpinnerPersonalizado>;
   if (error) return <div>error</div>;
   if (data)
     return (
       <>
-        <h3
-          style={{ color: "#FFC107", paddingTop: "10px", fontWeight: "bold" }}
-        >
-          Popular actors
-        </h3>
-        <div className="d-flex pt-3">
-          <Carousel
-            interval={null}
-            indicators={false}
-            style={{
-              width: "100%",
-              height: "auto",
-              marginTop: "20px",
-            }}
-          >
-            {arrayReduce(data, 5).map((actores, i) => (
-              <Carousel.Item key={i}>
-                <ContenedorItems>
-                  {actores.map((actor, j) => (
-                    <ActorCard data={actor} key={actor.id} />
-                  ))}
-                </ContenedorItems>
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        </div>
+        <TituloListaActores>Popular actors</TituloListaActores>
+        <CarouselEstilado interval={null} indicators={false}>
+          {arrayReduce(data, 5).map((actores, i) => (
+            <Carousel.Item key={i}>
+              <ContenedorItems>
+                {actores.map((actor, j) => (
+                  <ActorCard data={actor} key={actor.id} />
+                ))}
+              </ContenedorItems>
+            </Carousel.Item>
+          ))}
+        </CarouselEstilado>
       </>
     );
 };
