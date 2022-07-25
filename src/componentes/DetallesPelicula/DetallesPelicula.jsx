@@ -13,6 +13,7 @@ const ContenedorPortada = styled.div`
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  background-color: black;
 `;
 const ImagenPortada = styled.img`
   height: 400px;
@@ -30,7 +31,7 @@ const LayoutPelicula = styled.div`
 `;
 
 const Wrapper = styled.div`
-  background-color: #d9d8d3;
+  background-color: #181818;
 `;
 
 const ContenedorSinopsis = styled.div`
