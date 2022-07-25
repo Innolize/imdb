@@ -1,79 +1,73 @@
-import React from 'react';
-import { Card, Carousel, Spinner } from 'react-bootstrap';
-import { useFetchReducer } from '../../customHooks/useFetch';
-import { obtenerPeliculasTrending } from '../../service/API/obtenerDatosAPI';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faBookmark } from '@fortawesome/free-solid-svg-icons';
-import { arrayReduce } from '../../utilidades/utilidades';
-import { Link } from 'react-router-dom';
-import styled from '@emotion/styled';
+import React from "react";
+import { Carousel } from "react-bootstrap";
+import { useFetchReducer } from "../../customHooks/useFetch";
+import { obtenerPeliculasTrending } from "../../service/API/obtenerDatosAPI";
+import { arrayReduce } from "../../utilidades/utilidades";
+import { ThumbnailPelicula } from "./Thumbnail";
+import styled from "@emotion/styled";
+import { SpinnerPersonalizado } from "../Common/Spinner";
 
 const ContenedorItems = styled.div`
-    display:flex;
-    margin-left: 30px;
-`
+  display: flex;
+  justify-content: center;
+  margin-left: 30px;
+  height: 400px;
+`;
 
-const Cards = ({ data }) => {
+const CarouselEstilado = styled(Carousel)`
+  width: 100%;
+  height: auto;
+  margintop: 20px;
+`;
+const ContenedorLista = styled.div`
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
+const TituloLista = styled.h3`
+  color: #ffc107;
+  font-weight: bold;
+`;
 
+const SubTituloLista = styled.h4`
+  color: gray;
+  font-weight: bold;
+`;
+const ListaDePeliculas = ({
+  callbackAPI = obtenerPeliculasTrending,
+  tituloLista = "",
+  subTituloLista = "",
+}) => {
+  const { data, loading, error } = useFetchReducer(callbackAPI);
+  if (loading)
     return (
-        <Link to={`/movie/${data.id}`}>
-            <Card style={{ width: '200px', backgroundColor: "#1A1A1A", marginRight: "20px" }}>
-                <Card.Img style={{ height: "250px", width: "auto" }} variant="top" src={`https://image.tmdb.org/t/p/w200${data.poster_path}`} />
-                <FontAwesomeIcon icon={faBookmark} className="position-absolute" style={{ height: "40px", width: "auto", opacity: "0.9" }} />
-                <Card.Body style={{ height: "165px" }}>
-                    <Card.Text style={{ color: "#766A60" }}>
-                        <FontAwesomeIcon icon={faStar} style={{ color: "orange" }} />{data.vote_average}
-                    </Card.Text>
-                    <Card.Title style={{ color: "white" }}>{data.title}</Card.Title>
-                </Card.Body>
-            </Card>
-        </Link>
-    )
-}
+      <SpinnerPersonalizado></SpinnerPersonalizado>
+    );
+  if (error) return <div>error</div>;
+  if (data)
+    return (
+      <ContenedorLista>
+        <TituloLista>{tituloLista}</TituloLista>
+        {subTituloLista && <SubTituloLista>{subTituloLista}</SubTituloLista>}
 
-const ListaDePeliculas = ({ callbackAPI = obtenerPeliculasTrending, tituloLista = "", subTituloLista = "" }) => {
-    const { data, loading, error } = useFetchReducer(callbackAPI)
-    if (loading)
-        return (
-            <div style={{ height: '380px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Spinner animation="border" role="status">
-                    <span className="sr-only">Loading...</span>
-                </Spinner>
-            </div>
-        )
-    if (error)
-        return (
-            <div>error</div>
-        )
-    if (data)
-        return (
-            <>
-                <div style={{ paddingTop: "10px", paddingBotom: "10px" }}>
-                    <h3 style={{ color: "#FFC107" }}><strong>{tituloLista}</strong></h3>
-                    {subTituloLista && <h5 style={{ color: "gray" }}><strong>{subTituloLista}</strong></h5>}
+        {data && (
+          <CarouselEstilado interval={null} indicators={false}>
+            {arrayReduce(data, 5).map((x, i) => (
+              <Carousel.Item key={i}>
+                <ContenedorItems justify="center">
+                  {x &&
+                    x.map((cardData, j) => (
+                      <ThumbnailPelicula
+                        data={cardData}
+                        key={j}
+                      ></ThumbnailPelicula>
+                    ))}
+                </ContenedorItems>
+              </Carousel.Item>
+            ))}
+          </CarouselEstilado>
+        )}
+      </ContenedorLista>
+    );
+};
 
-                    {data &&
-
-                        <Carousel interval={null} indicators={false} style={{ width: "100%", height: "auto", marginTop: "20px", marginBottom: "20px" }}>
-                            {arrayReduce(data, 5).map((x, i) =>
-                                <Carousel.Item key={i} >
-                                    <ContenedorItems>
-                                        {x && x.map((cardData, j) =>
-                                            <Cards data={cardData} key={j}></Cards>)}
-                                    </ContenedorItems>
-                                </Carousel.Item>
-                            )}
-
-                        </Carousel>
-                    }
-
-
-                </div>
-            </>
-        )
-
-
-
-}
-
-export default ListaDePeliculas
+export default ListaDePeliculas;
