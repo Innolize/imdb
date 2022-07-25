@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { faBookmark, faStar } from "@fortawesome/free-solid-svg-icons";
+import { quitarDecimales } from "../../utilidades/utilidades";
 
 const ContenedorThumbnail = styled(Card)`
   width: 200px;
@@ -44,7 +45,6 @@ const TituloDePelicula = styled(Card.Text)`
 const AgregarACola = styled.div`
   position: absolute;
   opacity: 0.9;
-
 `;
 
 const AgregarColaMas = styled.p`
@@ -75,7 +75,7 @@ export const ThumbnailPelicula = ({ data }) => {
         <CuerpoDePelicula>
           <PuntuacionPelicula>
             <FontAwesomeIcon icon={faStar} style={{ color: "orange" }} />
-            {data.vote_average}
+            {quitarDecimales(data.vote_average)}
           </PuntuacionPelicula>
           <TituloDePelicula>{data.title}</TituloDePelicula>
         </CuerpoDePelicula>
