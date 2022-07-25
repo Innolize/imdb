@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
-import { quitarDecimales } from "../../utilidades/utilidades";
+import { Votos } from "./Votos";
 
 const HeaderInfo = styled.div`
   display: inline-block;
@@ -16,17 +16,12 @@ const HeaderLinks = styled(NavLink)`
   color: gray;
   &: hover;
 `;
-const InfoSubtitulo = styled.span`
+const InfoBajoTitulo = styled.span`
   color: gray;
   padding: 0px 5px 0px 5px;
   font-size: 13px;
 `;
 
-const ContainerScore = styled.div`
-  display: flex;
-  width: 200px;
-  color: white;
-`;
 const ContenedorEstilado = styled.div`
   display: flex;
   justify-content: space-between;
@@ -36,17 +31,33 @@ const ContenedorEstilado = styled.div`
 const ContainerTitulo = styled.div`
   display: flex;
 `;
-const ContenedorIzquierdo = styled.div`
+
+const IconoBookmark = () => (
+  <FontAwesomeIcon
+    icon={faBookmark}
+    style={{ height: "50px", width: "40px", color: "gray" }}
+  />
+);
+
+const ContenedorTitulo = styled.div`
+  padding: 0px 10px;
+`;
+
+const TituloPelicula = styled.h1`
+  color: white;
+`;
+
+const TituloAñoLanzamiento = styled.span`
+  font-size: 24px;
+  color: gray;
+`;
+
+const ContenedorDatosBajoTitulo = styled.div`
   display: flex;
 `;
-const ContenedorDerecho = styled.div`
-    border-left: 1px solid gray;
-    margin-left: 10px;
-    display: flex;
-    color: gray:
- `;
 
 const InfoTitulo = ({ data }) => {
+  console.log(data);
   return (
     <>
       <HeaderInfo>
@@ -60,55 +71,30 @@ const InfoTitulo = ({ data }) => {
       </HeaderInfo>
       <ContenedorEstilado>
         <ContainerTitulo>
-          <FontAwesomeIcon
-            icon={faBookmark}
-            style={{ height: "50px", width: "40px", color: "gray" }}
-          />
-          <div style={{ padding: "0px 10px 0px 10px" }}>
-            <h1 style={{ color: "white" }}>
+          <IconoBookmark />
+          <ContenedorTitulo>
+            <TituloPelicula>
               {`${data.original_title}`}{" "}
-              <a href="google.com" style={{ fontSize: "24px", color: "gray" }}>
+              <TituloAñoLanzamiento>
                 ({new Date(data.release_date).getFullYear()})
-              </a>
-            </h1>
-            <div style={{ display: "flex" }}>
-              {data.adult && <InfoSubtitulo> +18 |</InfoSubtitulo>}{" "}
-              <InfoSubtitulo>{data.runtime}m</InfoSubtitulo>{" "}
-              <InfoSubtitulo>|</InfoSubtitulo>
-              <InfoSubtitulo>
-                {data.genres.map((x) => x.name).join()}
-              </InfoSubtitulo>{" "}
-              <InfoSubtitulo>|</InfoSubtitulo>{" "}
-              <InfoSubtitulo>{data.release_date}</InfoSubtitulo>
-            </div>
-          </div>
+              </TituloAñoLanzamiento>
+            </TituloPelicula>
+            <ContenedorDatosBajoTitulo>
+              {data.adult && <InfoBajoTitulo> +18 |</InfoBajoTitulo>}{" "}
+              <InfoBajoTitulo>{data.runtime}m</InfoBajoTitulo>{" "}
+              <InfoBajoTitulo>|</InfoBajoTitulo>
+              <InfoBajoTitulo>
+                {data.genres.map((x) => x.name).join(",  ")}
+              </InfoBajoTitulo>{" "}
+              <InfoBajoTitulo>|</InfoBajoTitulo>{" "}
+              <InfoBajoTitulo>{data.release_date}</InfoBajoTitulo>
+            </ContenedorDatosBajoTitulo>
+          </ContenedorTitulo>
         </ContainerTitulo>
-        <ContainerScore>
-          <FontAwesomeIcon
-            icon={faStar}
-            style={{ height: "40px", width: "40px", color: "#E4BB24" }}
-          ></FontAwesomeIcon>
-          <ContenedorIzquierdo>
-            <div>
-              <div style={{ display: "flex", alignItems: "flex-end" }}>
-                <strong>
-                  <span style={{ fontSize: "24px" }}>
-                    {quitarDecimales(data.vote_average)}
-                  </span>
-                </strong>{" "}
-                <span>/10</span>
-              </div>
-              <div>{data.vote_count}</div>
-            </div>
-          </ContenedorIzquierdo>
-          <ContenedorDerecho>
-            <FontAwesomeIcon
-              icon={faStar}
-              style={{ height: "40px", width: "40px", color: "gray" }}
-            ></FontAwesomeIcon>
-            <div>Rate this</div>
-          </ContenedorDerecho>
-        </ContainerScore>
+        <Votos
+          promedio={data.vote_average}
+          totalVotos={data.vote_count}
+        ></Votos>
       </ContenedorEstilado>
     </>
   );
